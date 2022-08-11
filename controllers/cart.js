@@ -10,19 +10,23 @@ module.exports = class Controller {
         try {
             const carts = await this.getAll();
 
+            const cart = {
+                timestamp: Date.now(),
+                productos: []
+            }
+
             if (!carts || !carts.length) {
-                obj.id = 1;
-                await fs.promises.writeFile(this.file, JSON.stringify([obj], null, 2));
+                cart.id = 1;
+                await fs.promises.writeFile(this.file, JSON.stringify([cart], null, 2));
 
                 return obj.id;
             }
 
             const lastCart = carts.slice(-1);
-            obj.id = parseInt(lastCart[0]?.id) + 1;
-            obj.timestamp = Date.now();
-            obj.productos = [];
-            
-            const addCart = [...carts, obj];
+
+            cart.id = parseInt(lastCart[0]?.id) + 1
+
+            const addCart = [...carts, cart];
             await fs.promises.writeFile(this.file, JSON.stringify(addCart, null, 2));
 
             return obj.id.toString();
@@ -41,17 +45,14 @@ module.exports = class Controller {
             }
 
             obj.timestamp = Date.now();
-            obj.id = id;
             
-            const cartsWithNewProduct = carts.map(cartItem => {
-                if(cartItem.id === obj.id) {
-                    const products = cartItem.productos;
-                    const addProductToCart = [...products, obj];
-                    return cartItem.productos = addProductToCart;
+            carts.forEach(cartItem => {
+                if(cartItem.id == id) {
+                    cartItem.productos.push(obj);
                 }
             });
 
-            await fs.promises.writeFile(this.file, JSON.stringify(cartsWithNewProduct, null, 2));
+            await fs.promises.writeFile(this.file, JSON.stringify(carts, null, 2));
 
             return obj.id.toString();
         } catch (err) {
