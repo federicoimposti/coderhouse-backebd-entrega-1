@@ -86,14 +86,14 @@ module.exports = class Controller {
 
     async getProductsInCart(id) {
         try {
-            const cart = await this.getById(id);
+            const cart = await this.getById(id);            
             const productsInCart = cart.productos;
 
-            if(!productsInCart.length){
+            if(!productsInCart?.length){
                 return error;
             }
 
-            return productsInCart ? JSON.parse(productsInCart) : null;
+            return productsInCart ?? null;
         } catch(err) {
             throw new Error('Ocurrió un error obteniendo los carritos.', err);
         }
