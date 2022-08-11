@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 1
+  },
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 2,
+    "timestamp": 1660100720156
+  },
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 3,
+    "timestamp": 1660100721969
+  },
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 4,
+    "timestamp": 1660100723299
+  },
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 5,
+    "timestamp": 1660100735322
+  },
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 6,
+    "timestamp": 1660101557929
+  },
+  {
+    "title": "Mase23",
+    "price": "Este es el contenidos",
+    "thumbnail": "http://",
+    "id": 7,
+    "timestamp": 1660101868633
+  }
+]

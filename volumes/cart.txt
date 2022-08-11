@@ -1,0 +1,15 @@
+[
+  null,
+  [
+    {
+      "id": 5,
+      "nombre": "Cuadrícula",
+      "descripcion": "Cuadrícula ideal para matemática.",
+      "codigo": "12311",
+      "foto": "https://google.com.ar/image/",
+      "price": "Este es el contenidos",
+      "stock": "3",
+      "timestamp": 1660184583392
+    }
+  ]
+]
