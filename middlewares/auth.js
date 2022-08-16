@@ -1,6 +1,6 @@
 module.exports = {
     auth: function(req, res, next){
-        const admin = true;
+        const admin = false;
         res.admin = admin;
         next();
     }
