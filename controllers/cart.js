@@ -6,7 +6,7 @@ module.exports = class Controller {
         this.file = file;
     }
 
-    async save(obj) {
+    async save() {
         try {
             const carts = await this.getAll();
 
@@ -19,7 +19,7 @@ module.exports = class Controller {
                 cart.id = 1;
                 await fs.promises.writeFile(this.file, JSON.stringify([cart], null, 2));
 
-                return obj.id;
+                return cart.id.toString();
             }
 
             const lastCart = carts.slice(-1);
@@ -29,7 +29,7 @@ module.exports = class Controller {
             const addCart = [...carts, cart];
             await fs.promises.writeFile(this.file, JSON.stringify(addCart, null, 2));
 
-            return obj.id.toString();
+            return cart.id.toString();
         } catch (err) {
             throw new Error('Ocurrió un error al guardar el archivo.', err);
         }
@@ -113,6 +113,37 @@ module.exports = class Controller {
             throw new Error('Ocurrió un error eliminando el carrito.', err);
         }
         
+    }
+
+    async deleteByIdCartAndIdProduct(cartId, productId) {
+        try {
+            const productIdFormatted = parseInt(productId);
+            const carts = await this.getAll();
+            const cart = carts.find(cart => cart.id === cartId);
+
+            if (!cart) {
+                return error;
+            }
+            
+            const cartsFiltered = carts.map(cartItem => {
+                if(cartItem.id == cartId) {
+                    const productsFiltered = cartItem.productos.filter(product => product.id != productIdFormatted );
+                    const cartFiltered = {
+                        timestamp: cartItem?.timestamp,
+                        id: cartItem?.id,
+                        products: productsFiltered,
+                    }
+
+                    return cartFiltered;
+                }
+
+                return cartItem ? cartItem : [];
+            });
+
+            await fs.promises.writeFile(this.file, JSON.stringify(cartsFiltered, null, 2));
+        } catch (err) {
+            throw new Error('Ocurrió un error al guardar el archivo.', err);
+        }
     }
 
     async deleteAll() {

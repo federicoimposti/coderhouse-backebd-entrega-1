@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1660186188194,
+    "timestamp": 1660610682692,
     "productos": [
       {
         "id": "23",
@@ -10,45 +10,9 @@
         "foto": "https://google.com.ar/image/",
         "price": "Este es el contenidos",
         "stock": "3",
-        "timestamp": 1660186227128
-      },
-      {
-        "id": "23",
-        "nombre": "Cuadrícula",
-        "descripcion": "Cuadrícula ideal para matemática.",
-        "codigo": "12311",
-        "foto": "https://google.com.ar/image/",
-        "price": "Este es el contenidos",
-        "stock": "3",
-        "timestamp": 1660186229805
-      },
-      {
-        "id": "23",
-        "nombre": "Cuadrícula",
-        "descripcion": "Cuadrícula ideal para matemática.",
-        "codigo": "12311",
-        "foto": "https://google.com.ar/image/",
-        "price": "Este es el contenidos",
-        "stock": "3",
-        "timestamp": 1660186230763
+        "timestamp": 1660611246376
       }
     ],
     "id": 1
-  },
-  {
-    "timestamp": 1660186205796,
-    "productos": [
-      {
-        "id": "23",
-        "nombre": "Cuadrícula",
-        "descripcion": "Cuadrícula ideal para matemática.",
-        "codigo": "12311",
-        "foto": "https://google.com.ar/image/",
-        "price": "Este es el contenidos",
-        "stock": "3",
-        "timestamp": 1660186218461
-      }
-    ],
-    "id": 2
   }
 ]

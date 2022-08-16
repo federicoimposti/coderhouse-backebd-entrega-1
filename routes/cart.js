@@ -40,6 +40,19 @@ carritoRouter.get("/", (req, res) => {
       })
   });
 
+  carritoRouter.delete("/:id/productos/:id_prod", (req, res) => {
+    const cartId = parseInt(req?.params?.id);
+    const productId = parseInt(req?.params?.id_prod);
+
+    carrito.deleteByIdCartAndIdProduct(cartId, productId)
+      .then(response => {
+        res.status(202).send(response);
+      })
+      .catch(err => {
+        console.log('ocurrió un error al eliminar el producto del carrito.', err);
+      })
+  });
+
   carritoRouter.post("/", (req, res) => {
     carrito.save(req.body)
       .then(response => {
@@ -56,7 +69,6 @@ carritoRouter.get("/", (req, res) => {
 
     carrito.saveProductInCart(req.body, cartId)
       .then(response => {
-        console.log(response);
         res.status(201).send(response);
       })
       .catch(err => {
