@@ -5,6 +5,7 @@ const controller = require('../controllers/products');
 const productos = new controller('./volumes/products.txt');
 
 const error = { error: 'Producto no encontrado' };
+const authError = { error: 'Usuario no autorizado' }
 
 productsRouter.get("/", (req, res) => {
   productos.getAll()
@@ -29,6 +30,8 @@ productsRouter.get("/", (req, res) => {
   });
 
   productsRouter.delete("/:id", (req, res) => {
+    if (!res.admin) res.status(403).send(authError);
+    
     const productId = parseInt(req?.params?.id);
 
     productos.deleteById(productId)
@@ -41,6 +44,8 @@ productsRouter.get("/", (req, res) => {
   });
 
   productsRouter.post("/", (req, res) => {
+    if (!res.admin) res.status(403).send(authError);
+
     productos.save(req.body)
       .then(response => {
         res.status(201).send(response);
@@ -51,6 +56,8 @@ productsRouter.get("/", (req, res) => {
   });
 
   productsRouter.put("/:id", (req, res) => {
+    if (!res.admin) res.status(403).send(authError);
+    
     const productId = parseInt(req?.params?.id);
     
     productos.update(productId, req.body)
