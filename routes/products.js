@@ -30,43 +30,49 @@ productsRouter.get("/", (req, res) => {
   });
 
   productsRouter.delete("/:id", (req, res) => {
-    if (!res.admin) res.status(403).send(authError);
-    
-    const productId = parseInt(req?.params?.id);
+    if (!res.admin) {
+      res.status(403).send(authError)
+    } else {
+      const productId = parseInt(req?.params?.id);
 
-    productos.deleteById(productId)
-      .then(response => {
-        res.status(202).send(response);
-      })
-      .catch(err => {
-        console.log('ocurrió un error al eliminar el producto.', err);
-      })
+      productos.deleteById(productId)
+        .then(response => {
+          res.status(202).send(response);
+        })
+        .catch(err => {
+          console.log('ocurrió un error al eliminar el producto.', err);
+        });
+    }
   });
 
   productsRouter.post("/", (req, res) => {
-    if (!res.admin) res.status(403).send(authError);
-
-    productos.save(req.body)
-      .then(response => {
-        res.status(201).send(response);
-      })
-      .catch(err => {
-          console.log('ocurrió un error al guardar el producto.', err);
-      })
+    if (!res.admin) {
+      res.status(403).send(authError)
+    } else {
+      productos.save(req.body)
+        .then(response => {
+          res.status(201).send(response);
+        })
+        .catch(err => {
+            console.log('ocurrió un error al guardar el producto.', err);
+        })
+    }
   });
 
   productsRouter.put("/:id", (req, res) => {
-    if (!res.admin) res.status(403).send(authError);
+    if (!res.admin) {
+      res.status(403).send(authError)
+    } else {
+      const productId = parseInt(req?.params?.id);
     
-    const productId = parseInt(req?.params?.id);
-    
-    productos.update(productId, req.body)
-      .then(response => {
-        res.status(200).send(response);
-      })
-      .catch(err => {
-        console.log('ocurrió un error al modificar el producto.', err);
-      })
+      productos.update(productId, req.body)
+        .then(response => {
+          res.status(200).send(response);
+        })
+        .catch(err => {
+          console.log('ocurrió un error al modificar el producto.', err);
+        })
+    }
   });
 
 module.exports = productsRouter;

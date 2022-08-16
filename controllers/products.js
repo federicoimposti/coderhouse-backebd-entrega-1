@@ -14,7 +14,7 @@ module.exports = class Controller {
                 obj.id = 1;
                 await fs.promises.writeFile(this.file, JSON.stringify([obj], null, 2));
 
-                return obj.id;
+                return obj.id.toString();
             }
 
             const lastProduct = products.slice(-1);
