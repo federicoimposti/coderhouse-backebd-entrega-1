@@ -81,7 +81,7 @@ module.exports = class Controller {
 
     async update(id, newData) {
         try {
-            const { title, price, thumbnail } = newData;
+            const { nombre, price, foto } = newData;
             const productId = id;
 
             const product = await this.getById(productId);
@@ -91,9 +91,9 @@ module.exports = class Controller {
                 products.forEach(product => {
                     const id = product.id;
                     if(productId === id){
-                        product.title = title;
+                        product.nombre = nombre;
                         product.price = price;
-                        product.thumbnail = thumbnail;
+                        product.foto = foto;
                     }
                 });
 
